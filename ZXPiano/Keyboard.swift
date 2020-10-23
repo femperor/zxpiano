@@ -9,7 +9,7 @@ import SwiftUI
 
 struct WhiteKey: View {
     var body: some View {
-        Rectangle().foregroundColor(.white).border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: 0.5)
+        Rectangle().foregroundColor(.white).border(Color.black, width: 0.5)
     }
 }
 
@@ -21,11 +21,20 @@ struct BlackKey: View {
 
 struct Keyboard: View {
     var body: some View {
-        HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: 0) {
-            ForEach(1...36, id: \.self) { count in
-                WhiteKey()
+        ZStack(content: {
+            HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: 0) {
+                ForEach(1...36, id: \.self) { count in
+                    WhiteKey()
+                }
             }
-        }
+            GeometryReader(content: { geometry in
+                HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: geometry.size.width/72, content: {
+                    ForEach(1...35, id: \.self) { count in
+                        BlackKey()
+                    }
+                }).padding(geometry.size.width/54)
+            })
+        })
     }
 }
 
