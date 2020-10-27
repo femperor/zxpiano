@@ -14,8 +14,26 @@ struct WhiteKey: View {
 }
 
 struct BlackKey: View {
+    
+    var shouldSkip = false
+    
     var body: some View {
-        Rectangle().foregroundColor(.black)
+        if shouldSkip {
+            Spacer()
+        }
+        else {
+            Rectangle().foregroundColor(.black)
+        }
+    }
+}
+
+struct BlackKeyStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        if configuration.isPressed {
+            return BlackKey().foregroundColor(.blue)
+        } else {
+            return BlackKey().foregroundColor(.black)
+        }
     }
 }
 
@@ -24,15 +42,29 @@ struct Keyboard: View {
         ZStack(content: {
             HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: 0) {
                 ForEach(1...36, id: \.self) { count in
-                    WhiteKey()
+                    Button(action: {
+                        print("white key clicked")
+                    }){
+                        WhiteKey()
+                    }.cornerRadius(5.0)
                 }
             }
             GeometryReader(content: { geometry in
-                HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: geometry.size.width/72, content: {
+                let whiteKeyWidth = geometry.size.width / 36.0
+                let blackKeyWidth = whiteKeyWidth * 2.0 / 3.0
+                HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: whiteKeyWidth / 3.0, content: {
                     ForEach(1...35, id: \.self) { count in
-                        BlackKey()
+                        Button(action: {
+                            print("black key clicked")
+                        }){
+                            BlackKey(shouldSkip: count % 8 == 3 || count % 8 == 7)
+                        }.cornerRadius(5.0).clipped().buttonStyle(BlackKeyStyle())
+                        
                     }
-                }).padding(geometry.size.width/54)
+                }).padding(blackKeyWidth)
+            })
+            GeometryReader(content: { geometry in
+                Rectangle().frame(width: geometry.size.width, height: geometry.size.height/4.0, alignment: .top)
             })
         })
     }

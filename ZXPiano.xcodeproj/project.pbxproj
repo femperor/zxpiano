@@ -12,6 +12,7 @@
 		9F1955022541601700F90D17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F1955012541601700F90D17 /* Assets.xcassets */; };
 		9F1955052541601700F90D17 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F1955042541601700F90D17 /* Preview Assets.xcassets */; };
 		9F6ED1ED2542A9C30070C399 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6ED1EC2542A9C30070C399 /* Keyboard.swift */; };
+		9FAC0D5925480ED500DCD8A4 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FAC0D5825480ED500DCD8A4 /* SwiftUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		9F1955062541601700F90D17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F19550D2541602B00F90D17 /* ZXPiano.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ZXPiano.entitlements; sourceTree = "<group>"; };
 		9F6ED1EC2542A9C30070C399 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
+		9FAC0D5825480ED500DCD8A4 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/iOSSupport/System/Library/Frameworks/SwiftUI.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,6 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FAC0D5925480ED500DCD8A4 /* SwiftUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +44,7 @@
 			children = (
 				9F1954FC2541600F00F90D17 /* ZXPiano */,
 				9F1954FB2541600F00F90D17 /* Products */,
+				9FAC0D5725480ED500DCD8A4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -72,6 +76,14 @@
 				9F1955042541601700F90D17 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		9FAC0D5725480ED500DCD8A4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9FAC0D5825480ED500DCD8A4 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
