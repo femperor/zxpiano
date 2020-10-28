@@ -22,17 +22,11 @@ struct BlackKey: View {
             Spacer()
         }
         else {
-            Rectangle().foregroundColor(.black)
-        }
-    }
-}
-
-struct BlackKeyStyle: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        if configuration.isPressed {
-            return BlackKey().foregroundColor(.blue)
-        } else {
-            return BlackKey().foregroundColor(.black)
+            GeometryReader(content: { geometry in
+                Rectangle().foregroundColor(.black)
+                    
+            })
+            
         }
     }
 }
@@ -46,7 +40,8 @@ struct Keyboard: View {
                         print("white key clicked")
                     }){
                         WhiteKey()
-                    }.cornerRadius(5.0)
+                    }
+                    .cornerRadius(5.0)
                 }
             }
             GeometryReader(content: { geometry in
@@ -58,13 +53,17 @@ struct Keyboard: View {
                             print("black key clicked")
                         }){
                             BlackKey(shouldSkip: count % 8 == 3 || count % 8 == 7)
-                        }.cornerRadius(5.0).clipped().buttonStyle(BlackKeyStyle())
+                                .frame(width: blackKeyWidth, height: geometry.size.height * 0.8, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        }
+                        .cornerRadius(5.0)
+                        .clipped()
                         
                     }
                 }).padding(blackKeyWidth)
             })
             GeometryReader(content: { geometry in
-                Rectangle().frame(width: geometry.size.width, height: geometry.size.height/4.0, alignment: .top)
+                Rectangle()
+                    .frame(width: geometry.size.width, height: geometry.size.height/4.0, alignment: .top)
             })
         })
     }
